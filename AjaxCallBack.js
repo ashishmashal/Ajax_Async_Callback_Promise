@@ -2,13 +2,15 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 function showTime() {
     const date = new Date();
-    return date.getHours() + "Hrs:" + date.getMinutes() + "Minutes:" + date.getSeconds() + "Secs:";
+    return date.getHours() + "Hrs:" + date.getMinutes() 
+    + "Minutes:" + date.getSeconds() + "Secs:";
 }
 
 function makeAJAXCall(methodType, url, callback, async = true, data = null) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        console.log(methodType + " State changed called at :=> " + showTime() + " RS:=> " + xhr.readyState + " Status:=> " + xhr.status);
+        console.log(methodType + " State changed called at :=> "
+         + showTime() + " RS:=> " + xhr.readyState + " Status:=> " + xhr.status);
         if (xhr.readyState === 4) {
             if (xhr.status === 200 || xhr.status === 201) {
                 callback(xhr.responsetext);
@@ -35,15 +37,15 @@ function getUserDetails(data) {
 makeAJAXCall("GET", getURL, getUserDetails, true);
 console.log("made GET AJAXCall to server at :=> " + showTime());
 
-const deleteURL = "http://localhost:3000/employees/1";
+const deleteURL = "http://localhost:3000/employees/8";
 function userDeleted(data){
     console.log("USer Deleted at:=> "+ showTime() +" data:=> " +data)
 }
-makeAJAXCall("DELETE", deleteURL, userDeleted, false);
+makeAJAXCall("DELETE", deleteURL, userDeleted, true);
 console.log("made DELETE AJAXCall to server at :=> " + showTime());
 
 const postURL = "http://localhost:3000/employees";
-const emplData = {"name" : "Harry", "Salary": "5000"};
+const emplData = {"name" : "Vikas", "Salary": "5000"};
 function userAdded(data){
     console.log("User Added at:=> " + showTime() + " data:=> " +data)
 }
