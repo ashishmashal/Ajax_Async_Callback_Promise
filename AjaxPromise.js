@@ -4,8 +4,8 @@ function makePromiseCall(methodType, url, async = true, data = null) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            console.log("State Changed Called. Ready State: " 
-            + xhr.readyState + " Status: " + xhr.status);
+            console.log("State Changed Called. Ready State: "
+                + xhr.readyState + " Status: " + xhr.status);
             if (xhr.status.toString().match('^[2][0-9]{2}$')) {
                 resolve(xhr.responseText);
             } else if (xhr.status.toString().match('^[4,5][0-9]{2})$')) {
@@ -26,24 +26,24 @@ function makePromiseCall(methodType, url, async = true, data = null) {
     });
 }
 
-const getURL = "http://localhost:3000/employees/3"; 
+const getURL = "http://localhost:3000/employees/3";
 makePromiseCall("GET", getURL, false)
     .then(responseText => {
-        console.log("Get User Data: " +responseText)
+        console.log("Get User Data: " + responseText)
     }).catch(error => console.log("GET Error Status: " +
         JSON.stringify(error)));
 
-const deleteURL = "http://localhost:3000/employees/10"; 
+const deleteURL = "http://localhost:3000/employees/11";
 makePromiseCall("DELETE", deleteURL, false)
     .then(responseText => {
-        console.log("User Deleted: " +responseText)
-    }).catch(error => console.log("DELETE Error Status: " 
-    + JSON.stringify(error)));
+        console.log("User Deleted: " + responseText)
+    }).catch(error => console.log("DELETE Error Status: "
+        + JSON.stringify(error)));
 
 const postURL = "http://localhost:3000/employees";
-const emplData = { "name": "Kumar", "salary": "5000" }; 
+const emplData = { "name": "Ashish", "salary": "5000" };
 makePromiseCall("POST", postURL, false, emplData)
     .then(responseText => {
-        console.log("User Added: " +responseText)
-    }).catch(error => console.log("POST Error Status: " 
-    + JSON.stringify(error)));
+        console.log("User Added: " + responseText)
+    }).catch(error => console.log("POST Error Status: "
+        + JSON.stringify(error)));
